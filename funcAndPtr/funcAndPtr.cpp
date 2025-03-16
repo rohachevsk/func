@@ -29,22 +29,22 @@ int findRandNumber(int arr[], int size)
     }
     cout << "No match found" << endl;
 }
-int pivot(int arr[], int size)
+int pivot(int* arr, int size)
 {
     srand(time(0));
     int randIndex = rand() % size;
-    cout << "Random index: " << randIndex << ", value: " << arr[randIndex] << endl;
+    cout << "Random index: " << randIndex << ", value: " << *(arr + randIndex) << endl;
     return randIndex;
 }
-void bubbleSort(int arr[], int start, int end, bool ascending)
+void bubbleSort(int* arr, int start, int end, bool ascending)
 {
     for (int i = start; i < end; i++)
     {
         for (int j = start; j < end - (i - start); j++)
         {
-            if ((ascending && arr[j] > arr[j + 1]) || (!ascending && arr[j] < arr[j + 1]))
+            if ((ascending && *(arr + j) > *(arr + j + 1)) || (!ascending && *(arr + j) < *(arr + j + 1)))
             {
-                swap(arr[j], arr[j + 1]);
+                swap(*(arr + j), *(arr + j + 1));
             }
         }
     }
@@ -79,7 +79,7 @@ int main()
     bubbleSort(arr, pivotIndex + 1, SIZE - 1, true);
     for (int i = 0; i < SIZE; i++)
     {
-        cout << arr[i] << " ";
+        cout << *(arr + i) << " ";
     }
     return 0;
 }
